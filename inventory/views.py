@@ -1,35 +1,20 @@
+import os
+import csv
+import uuid
+import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Accommodation, Location
 from .forms import AccommodationForm, PropertyOwnerSignUpForm
-from django.contrib.auth.models import Group
 from django.conf import settings
 from django.core.files.storage import default_storage
-import os
-import uuid
-
-# views.py
-from django.shortcuts import render
-from .models import Location
-
-import uuid
-from django.shortcuts import render, redirect, get_object_or_404  # type: ignore
-from .forms import AccommodationForm
-from django.contrib.auth.decorators import login_required  # type: ignore
-from .models import Accommodation  # Assuming Accommodation is the model
-from django.contrib import messages  # type: ignore
 from django.contrib.auth.models import User, Group  # type: ignore
-from django.contrib.auth.views import LoginView  # type: ignore
-import os
-import uuid
-from django.conf import settings  # type: ignore
+from django.contrib.auth.views import LoginView  
 from django.core.files.uploadedfile import InMemoryUploadedFile  # type: ignore
-from django.core.files.storage import default_storage  # type: ignore
-from django.core.files.base import ContentFile  # type: ignore
-from .forms import PropertyOwnerSignUpForm
-
-import json
+from django.core.files.base import ContentFile 
+from django.http import HttpResponse
+from django.contrib.gis.geos import Point
 
 
 @login_required
@@ -66,16 +51,6 @@ def handle_uploaded_image(image):
     filepath = os.path.join("property_images", filename)
     saved_path = default_storage.save(filepath, image)
     return saved_path
-
-
-import os
-import uuid
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.conf import settings
-from django.core.files.storage import default_storage
-from .forms import AccommodationForm
-from .models import Accommodation
 
 
 @login_required
@@ -203,11 +178,7 @@ def location_detail(request, location_slug):
     return render(request, "location_detail.html", {"location": location})
 
 
-import csv
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.contrib.gis.geos import Point
-from .models import Location
+
 
 
 def import_csv(self, request):

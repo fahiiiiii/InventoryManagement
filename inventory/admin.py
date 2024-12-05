@@ -1,37 +1,14 @@
-from django.contrib import admin
-from django.contrib.auth.models import Group
-from django.shortcuts import render, get_object_or_404
-from django.urls import path
-from django.utils.html import format_html
 import csv
-from django.contrib import admin, messages
-from django.shortcuts import render, redirect
-from django.urls import path
-from django.core.exceptions import ValidationError
+from django.contrib.auth.models import Group
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.gis.geos import Point
-from .models import Location, Accommodation, LocalizeAccommodation
-
-# from django.contrib import admin
-from django.urls import reverse  # Add this import
-from django.contrib import admin, messages
 from django.utils.html import format_html
 from import_export import resources
 from import_export.admin import ExportMixin
 from .models import Location, Accommodation, LocalizeAccommodation
-
-# from django.contrib import admin
-from .models import Location, Accommodation, LocalizeAccommodation
-
 from django.contrib import admin, messages
 from django.urls import path, reverse
-from django.utils.html import format_html
-from django.contrib.gis.geos import Point
 from django.core.exceptions import ValidationError
-from import_export import resources
-from import_export.admin import ExportMixin
-import csv
-
-from .models import Location, Accommodation, LocalizeAccommodation
 
 
 # Define a resource for Location model

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User  # type: ignore
 from django.core.exceptions import ValidationError  # type: ignore
 from django.core.validators import MinValueValidator, MaxValueValidator  # type: ignore
 from django.contrib.gis.forms import PointField  # type: ignore
-
 from .models import Accommodation, LocalizeAccommodation, Location
 
 

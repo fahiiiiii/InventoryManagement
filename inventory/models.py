@@ -1,34 +1,9 @@
-from django.db import models
-from django.contrib.auth.models import User
-from django.utils import timezone
-from django.contrib.gis.db import models
-import uuid
 import uuid
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.contrib.gis.db import models
-
-# from .models import Accommodation  # or the correct path if it's in another file
-
-from django.contrib.gis.db import models as gis_models
 from django.contrib.postgres.fields import ArrayField, JSONField
-from django.contrib.gis.db import models as gis_models
-
-
-# Location model (if it doesn't exist already)
-from django.db import models
-from django.contrib.gis.db import models as gis_models
-
-
-from django.db import models
-from django.contrib.auth.models import User
-from django.utils import timezone
-from django.contrib.gis.db import models as gis_models
-import uuid
-from django.contrib.postgres.fields import ArrayField, JSONField
-from django.db import models
-from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.gis.db import models as gis_models
 from django.utils.text import slugify

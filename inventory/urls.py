@@ -1,17 +1,11 @@
 from django.urls import path
 from . import views
-from .views import CustomLoginView
 from .views import users_in_group
-from django.conf import settings
-from django.conf.urls.static import static
-from django.urls import path
-
 from .views import import_csv
-from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views
 from .views import CustomLoginView
+
 
 urlpatterns = [
     path("property/add/", views.add_property, name="add_property"),
