@@ -125,6 +125,7 @@ class LocationAdmin(ExportMixin, admin.ModelAdmin):
         return render(request, "admin/csv_upload.html")
 
 
+
 # Custom admin for Accommodation
 @admin.register(Accommodation)
 class AccommodationAdmin(admin.ModelAdmin):
@@ -141,12 +142,16 @@ class AccommodationAdmin(admin.ModelAdmin):
     )
     search_fields = ("title", "country_code")
     list_filter = ("country_code", "published", "bedroom_count")
+
+    # Make non-editable fields read-only
+    readonly_fields = ("id", "created_at", "updated_at")
+
     fieldsets = (
         (
-            None,
+            "Basic Information",
             {
                 "fields": (
-                    "id",
+                    "id",  # Displayed as read-only
                     "feed",
                     "title",
                     "country_code",
@@ -174,11 +179,68 @@ class AccommodationAdmin(admin.ModelAdmin):
     )
 
     def get_queryset(self, request):
-        # Only return accommodations for the logged-in user
+        """
+        Only return accommodations for the logged-in user unless the user is a superuser.
+        Superusers should be able to see all properties, while admin users can only see their own properties.
+        """
         queryset = super().get_queryset(request)
-        if request.user.groups.filter(name="Property Owners").exists():
+
+        # If the user is a superuser (admin), show all properties
+        if request.user.is_superuser:
+            return queryset
+        elif request.user.is_staff:
+            # Admins can only see their own properties
             return queryset.filter(user=request.user)
-        return queryset
+        
+        # Non-staff users (Property Owners) can only see their own properties
+        return queryset.filter(user=request.user)
+
+    def save_model(self, request, obj, form, change):
+        """
+        If the user is a superuser, assign them as the user for all properties created by others.
+        Otherwise, associate the logged-in user with the property.
+        """
+        if request.user.is_superuser:
+            # Allow superuser to create properties under their own account
+            obj.user = request.user
+        elif request.user.is_staff:
+            # Staff members should be able to see and manage only their properties
+            obj.user = request.user
+        super().save_model(request, obj, form, change)
+
+    def has_delete_permission(self, request, obj=None):
+        """
+        Allow superusers to delete any property.
+        Staff members (admins) can only delete their own properties.
+        """
+        if request.user.is_superuser:
+            return True  # Superusers can delete any property
+        if obj and obj.user == request.user:
+            return True  # Admin can delete only their own property
+        return False  # Admin can't delete other admin properties
+
+    def has_change_permission(self, request, obj=None):
+        """
+        Allow superusers to change any property.
+        Staff members (admins) can only edit their own properties.
+        """
+        if request.user.is_superuser:
+            return True  # Superusers can edit any property
+        if obj and obj.user == request.user:
+            return True  # Admin can edit only their own property
+        return False  # Admin can't edit other admin properties
+
+    def has_view_permission(self, request, obj=None):
+        """
+        Allow superusers to view any property.
+        Staff members (admins) can only view their own properties.
+        """
+        if request.user.is_superuser:
+            return True  # Superusers can view any property
+        if obj and obj.user == request.user:
+            return True  # Admin can view only their own property
+        return False  # Admin can't view other admin properties
+
 
 
 # Custom admin for LocalizeAccommodation

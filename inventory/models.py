@@ -11,7 +11,6 @@ from django.utils.text import slugify
 
 class Location(models.Model):
     # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    # id = models.CharField(max_length=36, primary_key=True, default=uuid.uuid4)
     # id = models.CharField(max_length=20, primary_key=True, default=lambda: str(uuid.uuid4())[:20], editable=False)
     id = models.CharField(max_length=20, primary_key=True)
     title = models.CharField(max_length=100)

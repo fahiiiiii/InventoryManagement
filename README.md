@@ -41,6 +41,7 @@ The system includes:
     - Add, update, and delete properties.
     - Access all properties in the Django Admin interface.
     - Manage locations and user roles.
+  ***Note*** : Only the superuser has access to the Accommodation list containing all properties created by admin users. If you need to perform operations on the list of accommodations, you must log in as the superuser. Other admin users will not be able to view the full list of accommodations in the Django Admin interface.
 
 ### 4. **Geospatial Integration**
 - Geolocation fields for precise mapping.
@@ -207,6 +208,7 @@ For **Property Owners**:
   - Add properties via the Add Property page.
   - Edit or delete their own properties.
   - Property Owners cannot manage properties added by other users.
+"***Important***: Only the superuser can view and manage all properties created by admin users. Admins without superuser privileges will not be able to access the full list of accommodations."
 
 ---
 
