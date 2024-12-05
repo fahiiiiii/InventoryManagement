@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0009_alter_accommodation_id'),
+        ("inventory", "0009_alter_accommodation_id"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='accommodation',
-            name='bedroom_count',
+            model_name="accommodation",
+            name="bedroom_count",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='images',
+            model_name="accommodation",
+            name="images",
             field=models.JSONField(default=list),
         ),
     ]

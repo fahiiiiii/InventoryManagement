@@ -11,58 +11,74 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('inventory', '0012_alter_accommodation_amenities'),
+        ("inventory", "0012_alter_accommodation_amenities"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='accommodation',
-            name='feed',
+            model_name="accommodation",
+            name="feed",
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='amenities',
+            model_name="accommodation",
+            name="amenities",
             field=models.JSONField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='center',
-            field=django.contrib.gis.db.models.fields.PointField(blank=True, null=True, srid=4326),
+            model_name="accommodation",
+            name="center",
+            field=django.contrib.gis.db.models.fields.PointField(
+                blank=True, null=True, srid=4326
+            ),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='id',
+            model_name="accommodation",
+            name="id",
             field=models.CharField(max_length=20, primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='images',
-            field=django.contrib.postgres.fields.ArrayField(base_field=models.URLField(max_length=300), blank=True, null=True, size=None),
+            model_name="accommodation",
+            name="images",
+            field=django.contrib.postgres.fields.ArrayField(
+                base_field=models.URLField(max_length=300),
+                blank=True,
+                null=True,
+                size=None,
+            ),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='location',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to='inventory.location'),
+            model_name="accommodation",
+            name="location",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="inventory.location",
+            ),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='review_score',
+            model_name="accommodation",
+            name="review_score",
             field=models.DecimalField(decimal_places=1, default=0, max_digits=3),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='accommodations', to=settings.AUTH_USER_MODEL),
+            model_name="accommodation",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="accommodations",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
         migrations.AlterField(
-            model_name='location',
-            name='city',
+            model_name="location",
+            name="city",
             field=models.CharField(blank=True, max_length=30, null=True),
         ),
         migrations.AlterField(
-            model_name='location',
-            name='state_abbr',
+            model_name="location",
+            name="state_abbr",
             field=models.CharField(blank=True, max_length=3, null=True),
         ),
     ]

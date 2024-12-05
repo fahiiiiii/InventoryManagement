@@ -6,13 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0015_remove_location_bedroom_count_alter_accommodation_id_and_more'),
+        (
+            "inventory",
+            "0015_remove_location_bedroom_count_alter_accommodation_id_and_more",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='location',
-            name='slug',
+            model_name="location",
+            name="slug",
             field=models.SlugField(blank=True, max_length=100, null=True, unique=True),
         ),
     ]

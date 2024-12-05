@@ -6,22 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0007_alter_accommodation_id'),
+        ("inventory", "0007_alter_accommodation_id"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='accommodation',
-            name='feed',
+            model_name="accommodation",
+            name="feed",
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='id',
+            model_name="accommodation",
+            name="id",
             field=models.AutoField(primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='images',
-            field=models.ImageField(blank=True, null=True, upload_to='property_images/'),
+            model_name="accommodation",
+            name="images",
+            field=models.ImageField(
+                blank=True, null=True, upload_to="property_images/"
+            ),
         ),
     ]

@@ -28,7 +28,7 @@
 #             location_type="Country",
 #             center=Point(-74.0060, 40.7128)
 #         )
-        
+
 #         accommodation = Accommodation.objects.create(
 #             id="1",
 #             title="Test Accommodation",
@@ -41,7 +41,7 @@
 #             user=None,  # You can assign a user if needed
 #             published=True
 #         )
-        
+
 #         self.assertEqual(accommodation.title, "Test Accommodation")
 #         self.assertEqual(accommodation.bedroom_count, 2)
 #         self.assertEqual(accommodation.review_score, 4.5)
@@ -56,7 +56,7 @@
 #             location_type="Country",
 #             center=Point(-74.0060, 40.7128)
 #         )
-        
+
 #         accommodation = Accommodation.objects.create(
 #             id="2",
 #             title="Empty Property",
@@ -69,7 +69,7 @@
 #             user=None,
 #             published=False
 #         )
-        
+
 #         self.assertEqual(accommodation.bedroom_count, None)
 #         self.assertEqual(accommodation.review_score, None)
 #         self.assertEqual(accommodation.usd_rate, None)
@@ -81,20 +81,25 @@ from django.contrib.auth.models import User
 from inventory.models import Location, Accommodation, LocalizeAccommodation
 from django.contrib.gis.geos import Point
 
+
 class LocationModelTest(TestCase):
-    
+
     def test_location_creation(self):
         location = Location.objects.create(
             id="1",
             title="Test Location",
             country_code="US",
             location_type="Country",
-            center=Point(-74.0060, 40.7128)  # Example geospatial data (Longitude, Latitude)
+            center=Point(
+                -74.0060, 40.7128
+            ),  # Example geospatial data (Longitude, Latitude)
         )
         self.assertEqual(location.title, "Test Location")
         self.assertEqual(location.country_code, "US")
         self.assertEqual(location.location_type, "Country")
-        self.assertTrue(isinstance(location.center, Point))  # Check if center is a valid Point
+        self.assertTrue(
+            isinstance(location.center, Point)
+        )  # Check if center is a valid Point
 
     def test_location_missing_fields(self):
         # Test missing fields during location creation
@@ -103,8 +108,9 @@ class LocationModelTest(TestCase):
                 id="2",
                 title="Test Location Without Country Code",
                 location_type="Country",
-                center=Point(-74.0060, 40.7128)
+                center=Point(-74.0060, 40.7128),
             )
+
 
 class AccommodationModelTest(TestCase):
 
@@ -114,9 +120,9 @@ class AccommodationModelTest(TestCase):
             title="Test Location",
             country_code="US",
             location_type="Country",
-            center=Point(-74.0060, 40.7128)
+            center=Point(-74.0060, 40.7128),
         )
-        
+
         accommodation = Accommodation.objects.create(
             id="1",
             title="Test Accommodation",
@@ -127,9 +133,9 @@ class AccommodationModelTest(TestCase):
             center="POINT(40.7128 -74.0060)",  # Geolocation in WKT format
             location=location,
             user=None,  # You can assign a user if needed
-            published=True
+            published=True,
         )
-        
+
         self.assertEqual(accommodation.title, "Test Accommodation")
         self.assertEqual(accommodation.bedroom_count, 2)
         self.assertEqual(accommodation.review_score, 4.5)
@@ -142,9 +148,9 @@ class AccommodationModelTest(TestCase):
             title="Test Location",
             country_code="US",
             location_type="Country",
-            center=Point(-74.0060, 40.7128)
+            center=Point(-74.0060, 40.7128),
         )
-        
+
         # Test missing review_score and usd_rate, these should be handled by default
         accommodation = Accommodation.objects.create(
             id="2",
@@ -154,9 +160,9 @@ class AccommodationModelTest(TestCase):
             center="POINT(40.7128 -74.0060)",
             location=location,
             user=None,
-            published=True
+            published=True,
         )
-        
+
         self.assertEqual(accommodation.review_score, 0)  # Default review score
         self.assertEqual(accommodation.usd_rate, None)  # No USD rate set
 
@@ -166,9 +172,9 @@ class AccommodationModelTest(TestCase):
             title="Test Location",
             country_code="US",
             location_type="Country",
-            center=Point(-74.0060, 40.7128)
+            center=Point(-74.0060, 40.7128),
         )
-        
+
         accommodation = Accommodation.objects.create(
             id="1",
             title="Test Accommodation",
@@ -179,14 +185,15 @@ class AccommodationModelTest(TestCase):
             center="POINT(40.7128 -74.0060)",
             location=location,
             user=None,
-            published=True
+            published=True,
         )
-        
+
         accommodation.title = "Updated Property Title"
         accommodation.save()
         updated_accommodation = Accommodation.objects.get(id="1")
-        
+
         self.assertEqual(updated_accommodation.title, "Updated Property Title")
+
 
 class LocalizeAccommodationModelTest(TestCase):
 
@@ -196,7 +203,7 @@ class LocalizeAccommodationModelTest(TestCase):
             title="Test Location",
             country_code="US",
             location_type="Country",
-            center=Point(-74.0060, 40.7128)
+            center=Point(-74.0060, 40.7128),
         )
 
         accommodation = Accommodation.objects.create(
@@ -209,19 +216,19 @@ class LocalizeAccommodationModelTest(TestCase):
             center="POINT(40.7128 -74.0060)",
             location=location,
             user=None,
-            published=True
+            published=True,
         )
 
         localize = LocalizeAccommodation.objects.create(
             property=accommodation,
             language="en",
             description="English description",
-            policy={"pet_policy": "Allowed"}
+            policy={"pet_policy": "Allowed"},
         )
-        
+
         self.assertEqual(localize.language, "en")
         self.assertEqual(localize.description, "English description")
-        self.assertTrue('pet_policy' in localize.policy)
+        self.assertTrue("pet_policy" in localize.policy)
 
     def test_unique_localize_accommodation(self):
         location = Location.objects.create(
@@ -229,7 +236,7 @@ class LocalizeAccommodationModelTest(TestCase):
             title="Test Location",
             country_code="US",
             location_type="Country",
-            center=Point(-74.0060, 40.7128)
+            center=Point(-74.0060, 40.7128),
         )
 
         accommodation = Accommodation.objects.create(
@@ -242,21 +249,22 @@ class LocalizeAccommodationModelTest(TestCase):
             center="POINT(40.7128 -74.0060)",
             location=location,
             user=None,
-            published=True
+            published=True,
         )
 
         LocalizeAccommodation.objects.create(
             property=accommodation,
             language="en",
             description="English description",
-            policy={"pet_policy": "Allowed"}
+            policy={"pet_policy": "Allowed"},
         )
 
-        with self.assertRaises(Exception):  # Trying to insert the same language for the same property
+        with self.assertRaises(
+            Exception
+        ):  # Trying to insert the same language for the same property
             LocalizeAccommodation.objects.create(
                 property=accommodation,
                 language="en",
                 description="Duplicate English description",
-                policy={"pet_policy": "Not Allowed"}
+                policy={"pet_policy": "Not Allowed"},
             )
-

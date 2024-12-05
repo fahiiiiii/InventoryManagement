@@ -7,13 +7,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0001_initial'),
+        ("inventory", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='location',
-            name='center',
+            model_name="location",
+            name="center",
             field=django.contrib.gis.db.models.fields.PointField(srid=4326),
         ),
     ]

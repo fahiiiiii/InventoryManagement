@@ -7,22 +7,26 @@ import uuid
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('inventory', '0014_location_bedroom_count_location_slug_and_more'),
+        ("inventory", "0014_location_bedroom_count_location_slug_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='location',
-            name='bedroom_count',
+            model_name="location",
+            name="bedroom_count",
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='id',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
+            model_name="accommodation",
+            name="id",
+            field=models.UUIDField(
+                default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+            ),
         ),
         migrations.AlterField(
-            model_name='location',
-            name='id',
-            field=models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False),
+            model_name="location",
+            name="id",
+            field=models.UUIDField(
+                default=uuid.uuid4, editable=False, primary_key=True, serialize=False
+            ),
         ),
     ]

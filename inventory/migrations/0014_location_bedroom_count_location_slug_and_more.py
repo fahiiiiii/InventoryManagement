@@ -9,60 +9,70 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('inventory', '0013_accommodation_feed_alter_accommodation_amenities_and_more'),
+        ("inventory", "0013_accommodation_feed_alter_accommodation_amenities_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='location',
-            name='bedroom_count',
+            model_name="location",
+            name="bedroom_count",
             field=models.PositiveIntegerField(blank=True, null=True),
         ),
         migrations.AddField(
-            model_name='location',
-            name='slug',
+            model_name="location",
+            name="slug",
             field=models.SlugField(blank=True, unique=True),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='amenities',
+            model_name="accommodation",
+            name="amenities",
             field=models.JSONField(default=list),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='center',
-            field=models.CharField(default='unknown', max_length=255),
+            model_name="accommodation",
+            name="center",
+            field=models.CharField(default="unknown", max_length=255),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="accommodation",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='images',
+            model_name="accommodation",
+            name="images",
             field=models.JSONField(default=list),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='location',
-            field=models.ForeignKey(default='unknown', on_delete=django.db.models.deletion.CASCADE, to='inventory.location'),
+            model_name="accommodation",
+            name="location",
+            field=models.ForeignKey(
+                default="unknown",
+                on_delete=django.db.models.deletion.CASCADE,
+                to="inventory.location",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='review_score',
+            model_name="accommodation",
+            name="review_score",
             field=models.DecimalField(decimal_places=1, default=0, max_digits=4),
         ),
         migrations.AlterField(
-            model_name='accommodation',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="accommodation",
+            name="user",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL
+            ),
         ),
         migrations.AlterField(
-            model_name='location',
-            name='id',
-            field=models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
+            model_name="location",
+            name="id",
+            field=models.BigAutoField(
+                auto_created=True, primary_key=True, serialize=False, verbose_name="ID"
+            ),
         ),
     ]
