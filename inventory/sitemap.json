@@ -1,0 +1,29 @@
+[
+    {
+        "name": "CA",
+        "slug": "ca",
+        "locations": [
+            {
+                "Canada": "ca/ca"
+            }
+        ]
+    },
+    {
+        "name": "US",
+        "slug": "us",
+        "locations": [
+            {
+                "Los Angeles": "us/la"
+            },
+            {
+                "New York": "us/ny"
+            },
+            {
+                "Sunny Beach Resort": "us/18"
+            },
+            {
+                "United States": "us/us"
+            }
+        ]
+    }
+]

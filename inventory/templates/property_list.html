@@ -1,0 +1,178 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Properties</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #34495e;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f4f4f4;
+        }
+
+        td a {
+            text-decoration: none;
+            padding: 8px 16px;
+            margin: 5px;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: #fff;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        td a:hover {
+            background-color: #2980b9;
+        }
+
+        /* No Properties Found */
+        .no-properties {
+            text-align: center;
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-top: 20px;
+        }
+
+        /* Admin Actions */
+        .admin-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .admin-actions a {
+            padding: 12px 25px;
+            background-color: #27ae60;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .admin-actions a:hover {
+            background-color: #2ecc71;
+        }
+
+        /* Message Styling */
+        .message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            table {
+                font-size: 0.9em;
+            }
+            .admin-actions a {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Properties</h1>
+
+        {% if properties %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Country</th>
+                        <th>Bedrooms</th>
+                        <th>Review Score</th>
+                        <th>USD Rate</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for property in properties %}
+                        <tr>
+                            <td>{{ property.title }}</td>
+                            <td>{{ property.country_code }}</td>
+                            <td>{{ property.bedroom_count }}</td>
+                            <td>{{ property.review_score }}</td>
+                            <td>{{ property.usd_rate }}</td>
+                            <td>
+                                {% if property.id %}
+                                    {% if can_update %}
+                                        <a href="{% url 'update_property' property.id %}">Edit</a>
+                                    {% endif %}
+                                    {% if can_delete %}
+                                        <a href="{% url 'delete_property' property.id %}">Delete</a>
+                                    {% endif %}
+                                {% else %}
+                                    <span class="message">This property is missing an ID and cannot be edited or deleted.</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="no-properties">No properties found.</p>
+        {% endif %}
+
+        {% if can_create %}
+            <div class="admin-actions">
+                <a href="{% url 'add_property' %}">Create Property</a>
+            </div>
+        {% endif %}
+
+        {% if not can_create and not can_update and not can_delete %}
+            <p class="message">You need permission to be an admin to perform these actions.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

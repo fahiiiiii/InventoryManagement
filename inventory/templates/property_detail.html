@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .property-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .property-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .property-details {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="property-card">
+        <h1>{{ property.title }}</h1>
+        
+        {% if property.images %}
+        <img src="{{ property.images.url }}" alt="{{ property.title }}" class="property-image">
+        {% endif %}
+        
+        <div class="property-details">
+            <p><strong>Location:</strong> {{ property.center }}, {{ property.country_code }}</p>
+            <p><strong>Bedrooms:</strong> {{ property.bedroom_count|default:"Not specified" }}</p>
+            <p><strong>Review Score:</strong> {{ property.review_score }}/10</p>
+            <p><strong>Daily Rate:</strong> ${{ property.usd_rate|default:"Not specified" }}</p>
+            
+            <h3>Amenities</h3>
+            <ul>
+                {% for amenity in property.amenities %}
+                <li>{{ amenity|title }}</li>
+                {% empty %}
+                <li>No amenities specified</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

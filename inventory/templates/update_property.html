@@ -1,0 +1,316 @@
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Property</title>
+    <style>
+       
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #495057;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #343a40;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        
+        form {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        form label {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #f1f3f5;
+            color: #495057;
+            transition: border 0.3s ease;
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            border: 1px solid #007bff;
+            outline: none;
+        }
+
+        form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        
+        .message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            form input,
+            form select,
+            form textarea {
+                font-size: 0.9em;
+            }
+
+            form button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Property</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }} 
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Property</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #495057;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #343a40;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* Form Styling */
+        form {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        form label {
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #f1f3f5;
+            color: #495057;
+            transition: border 0.3s ease;
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            border: 1px solid #007bff;
+            outline: none;
+        }
+
+        form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Message Styling */
+        .message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            form input,
+            form select,
+            form textarea {
+                font-size: 0.9em;
+            }
+
+            form button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Property</h2>
+
+        <form method="POST" enctype="multipart/form-data">  <!-- Add enctype for file uploads -->
+            {% csrf_token %}
+            
+            <div>
+                <label for="id_title">Title</label>
+                {{ form.title }}  <!-- Render title field -->
+            </div>
+            
+            <div>
+                <label for="id_country_code">Country Code</label>
+                {{ form.country_code }}  <!-- Render country code field -->
+            </div>
+
+            <div>
+                <label for="id_bedroom_count">Bedroom Count</label>
+                {{ form.bedroom_count }}  <!-- Render bedroom count field -->
+            </div>
+
+            <div>
+                <label for="id_review_score">Review Score</label>
+                {{ form.review_score }}  <!-- Render review score field -->
+            </div>
+
+            <div>
+                <label for="id_usd_rate">USD Rate</label>
+                {{ form.usd_rate }}  <!-- Render USD rate field -->
+            </div>
+
+            <div>
+                <label for="id_center">Center</label>
+                {{ form.center }}  <!-- Render center field -->
+            </div>
+
+            <div>
+                <label for="id_images">Images</label>
+                {{ form.images }}  <!-- Render images field -->
+            </div>
+
+            <div>
+                <label for="id_location">Location</label>
+                {{ form.location }}  <!-- Render location field -->
+            </div>
+
+            <div>
+                <label for="id_amenities">Amenities</label>
+                {{ form.amenities }}  <!-- Render amenities field -->
+            </div>
+
+            <div>
+                <label for="id_published">Published</label>
+                {{ form.published }}  <!-- Render published field -->
+            </div>
+
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>
