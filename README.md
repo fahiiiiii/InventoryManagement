@@ -147,13 +147,12 @@ To restart the containers:
 docker-compose up
 ```
 
-### 5. **Run the Development Server**
-The application will be available on your local machine at http://127.0.0.1:8000/.
 
-### 6. **Access the Django Admin Interface**
+
+### 5. **Access the Django Admin Interface**
 Visit http://127.0.0.1:8000/admin to manage properties and locations.
 
-### 7. **Docker-Related Commands for Running and Managing the Application**
+### 6. **Docker-Related Commands for Running and Managing the Application**
 Run Django Commands Inside the Container (e.g., migrate, createsuperuser):
 ```bash
 docker exec -it django_web python manage.py <command>
@@ -208,7 +207,7 @@ For **Property Owners**:
   - Add properties via the Add Property page.
   - Edit or delete their own properties.
   - Property Owners cannot manage properties added by other users.
-"***Important***: Only the superuser can view and manage all properties created by admin users. Admins without superuser privileges will not be able to access the full list of accommodations."
+"***Important***: Only the superuser can view and manage all properties created by admin users. Admins without superuser privileges will not be able to access the full list of accommodations.Accomodation is disabled for all other users except the superuser."
 
 ---
 
