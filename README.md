@@ -147,6 +147,52 @@ To restart the containers:
 docker-compose up
 ```
 
+## Populate Locations using Fixtures
+
+If you have a CSV or JSON file containing location data, you can use Django's `loaddata` command to populate the database.
+
+### Steps to Load Location Data
+
+1. **Create a Location Fixture**:
+
+   Ensure you have a `locations.json` file in the `fixtures/` directory or in any directory of your project. Here's an example of a `locations.json` file:
+
+   ```json
+   [
+       {
+           "model": "inventory.location",
+           "pk": "1",
+           "fields": {
+               "title": "New York",
+               "country_code": "US",
+               "location_type": "City",
+               "parent": null,
+               "center": "POINT(-74.006 40.7128)"
+           }
+       },
+       {
+           "model": "inventory.location",
+           "pk": "2",
+           "fields": {
+               "title": "California",
+               "country_code": "US",
+               "location_type": "State",
+               "parent": null,
+               "center": "POINT(-119.4179 36.7783)"
+           }
+       }
+   ]
+2. **Run the Command to Load the Data**:
+
+    After the locations.json file is ready, you can load the data into your database by running the following command in the terminal:
+
+    
+    ```bash
+    docker exec -it django_web python manage.py loaddata fixtures/locations.json
+    ```
+    This command will import the data into the Location model. The Location model should have fields such as title, country_code, location_type, parent, and center.
+
+    
 
 
 ### 5. **Access the Django Admin Interface**
@@ -155,7 +201,7 @@ Visit http://127.0.0.1:8000/admin to manage properties and locations.
 ### 6. **Docker-Related Commands for Running and Managing the Application**
 Run Django Commands Inside the Container (e.g., migrate, createsuperuser):
 ```bash
-docker exec -it django_web python manage.py <command>
+docker exec -it django_web python manage.py runserver
 ```
 Run a custom Django command (for example, to generate sitemap):
 ```bash
